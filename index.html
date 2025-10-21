@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Nicolle & Chris — 11.29.2025</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@400;500;600&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --cream:#f8f1ea;
+    --paper:#fbf6f1;
+    --gold:#c9a441;
+    --taupe:#a07a6a;
+    --terracotta:#c46f49;
+    --sage:#cfd7c8;
+    --ink:#53433b;
+  }
+  html,body{margin:0}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:"Libre Baskerville", serif;
+    line-height:1.6;
+  }
+  .wrap{max-width:1100px;margin:auto;padding:24px}
+  header.hero{
+    background:linear-gradient(180deg, rgba(255,255,255,.7), rgba(255,255,255,.9)), url('https://images.unsplash.com/photo-1504198266285-165a4dd24703?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
+    border-bottom:6px solid var(--sage);
+    padding:64px 24px 48px;
+  }
+  .names{
+    font-family:"Allura", cursive;
+    font-size:min(16vw,140px);
+    color:var(--gold);
+    text-align:center;
+    line-height:0.85;
+    margin:10px 0 0;
+  }
+  .amp{font-size:.6em; letter-spacing:.08em; font-family:"Cormorant Garamond", serif; color:var(--gold)}
+  .date{
+    text-align:center; 
+    font-family:"Cormorant Garamond", serif;
+    font-size:22px; 
+    color:var(--taupe);
+    margin-top:10px
+  }
+  nav{display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:28px}
+  nav a{
+    text-decoration:none; color:var(--ink); background:var(--paper);
+    border:1px solid #e7dfd6; padding:10px 16px; border-radius:999px;
+  }
+  section{background:var(--paper); border:1px solid #efe8e0; border-radius:18px; padding:28px; margin:28px 0; box-shadow:0 8px 30px rgba(0,0,0,.04)}
+  h2{
+    font-family:"Cormorant Garamond", serif; 
+    font-weight:600; font-size:34px; margin:0 0 12px; color:var(--terracotta)
+  }
+  .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px}
+  .card{background:#fff; border:1px solid #eee2d8; padding:18px; border-radius:14px}
+  .muted{color:#7e6b61}
+  .btn{
+    display:inline-block; background:var(--gold); color:#fff; border:none; 
+    padding:12px 16px; border-radius:12px; font-weight:600; cursor:pointer;
+  }
+  .btn.secondary{background:var(--terracotta)}
+  details{background:#fff; border:1px dashed #e6d9cf; padding:14px 16px; border-radius:12px}
+  footer{color:#846d60; text-align:center; margin:32px 0 80px}
+  .qr-box{display:flex; gap:18px; align-items:center; flex-wrap:wrap}
+  .qr-canvas{background:#fff; border:1px solid #eee; border-radius:12px; padding:12px}
+  .pill{display:inline-block; padding:4px 10px; border-radius:999px; background:#efe7df; color:#7b5f54; font-size:12px}
+  @media (max-width:560px){ .names{font-size:72px} }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="pill">The Woodlands, Texas</div>
+    <h1 class="names">Nicolle <span class="amp">&</span> Chris</h1>
+    <p class="date">Saturday • November 29, 2025 • Four in the afternoon</p>
+    <nav>
+      <a href="#details">Details</a>
+      <a href="#where">Where</a>
+      <a href="#dress">Dress Code</a>
+      <a href="#rsvp">RSVP</a>
+      <a href="#photos">Upload Photos</a>
+      <a href="#qr">QR Code</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section id="details">
+    <h2>Wedding Day Details</h2>
+    <div class="grid">
+      <div class="card">
+        <strong>When</strong>
+        <p>Saturday, November 29, 2025<br/>4:00 PM</p>
+      </div>
+      <div class="card">
+        <strong>Where</strong>
+        <p>2614 South Wildwind Circle<br/>The Woodlands, Texas 77380</p>
+        <p><a class="btn" target="_blank" href="https://maps.google.com/?q=2614+South+Wildwind+Circle+The+Woodlands+TX+77380">Open in Maps</a></p>
+      </div>
+      <div class="card">
+        <strong>Livestream</strong>
+        <p>For those unable to attend, we’ll host a Facebook Live:<br/>
+        <a target="_blank" href="https://facebook.com/nicolle.ackel/live">facebook.com/nicolle.ackel/live</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="dress">
+    <h2>Dress Code</h2>
+    <p><em>Dressy Casual Attire</em></p>
+    <ul>
+      <li><strong>Ladies:</strong> Long, flowy gowns in beautiful fall colors</li>
+      <li><strong>Men:</strong> Slacks or khakis and a button-up shirt (tie optional)</li>
+    </ul>
+  </section>
+
+  <section id="registry">
+    <h2>Gifts & Registry</h2>
+    <p class="muted">We are not registered anywhere. If you wish to contribute to our honeymoon, thank you!</p>
+    <div class="grid">
+      <div class="card"><strong>Apple Pay / Zelle</strong><p>832-244-0425</p></div>
+      <div class="card"><strong>Cash App</strong><p>$NicolleAckel</p></div>
+    </div>
+  </section>
+
+  <section id="rsvp">
+    <h2>RSVP</h2>
+    <p>Please text <a href="sms:+18322440425">(832) 244-0425</a>.</p>
+  </section>
+
+  <section id="photos">
+    <h2>Upload Wedding Photos</h2>
+    <p class="muted">Drop your pics here — originals preferred! Files go straight to our private Cloudinary folder.</p>
+    <button id="uploadBtn" class="btn">Upload Photos</button>
+    <p class="muted" id="uploadStatus" style="margin-top:10px;"></p>
+  </section>
+
+  <section id="qr">
+    <h2>QR Code</h2>
+    <div class="qr-box">
+      <div>
+        <label for="siteUrl"><strong>Website URL</strong></label><br/>
+        <input id="siteUrl" value="https://yourwedding.onrender.com" style="width:min(420px,100%);padding:10px;border-radius:10px;border:1px solid #e6d9cf;margin:6px 0"/>
+        <button class="btn secondary" id="makeQr">Generate QR</button>
+        <p class="muted">After you deploy on Render, paste your final URL above and tap “Generate QR”, then right-click the image to save/print.</p>
+      </div>
+      <div class="qr-canvas"><canvas id="qrCanvas" width="220" height="220" aria-label="QR code"></canvas></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  Made with love • Nicolle & Chris
+</footer>
+
+<!-- Cloudinary Upload Widget -->
+<script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
+
+<!-- Minimal fake QR generator -->
+<script>
+!function(){function e(e,t){var n=function(e){for(var t=0,n=0,r=0;r<e.length;r++)t=(t<<5)-t+e.charCodeAt(r)|0,n=(n<<3)-n+e.charCodeAt(r)|0;return[Math.abs(t),Math.abs(n)]}(e),r=t.getContext("2d"),a=t.width,o=Math.floor(a/29),i=o*29,c=Math.floor((a-i)/2);r.clearRect(0,0,a,a),r.fillStyle="#fff",r.fillRect(0,0,a,a),r.fillStyle="#000";for(var l=0;l<29;l++)for(var d=0;d<29;d++){var s=(l*37+d*17+n[0]+n[1])%7<3?1:0;if((l<7&&d<7)||(l<7&&d>21)|*
