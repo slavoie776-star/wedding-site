@@ -99,7 +99,7 @@
 
   .couple-img{display:block;margin:25px auto 10px;width:220px;border-radius:16px;box-shadow:0 4px 15px rgba(0,0,0,.1)}
   .decor{display:block;margin:25px auto;max-width:130px;opacity:.9}
-  .decor.floral{max-width:160px;} /* natural sizing, slightly larger than pumpkin */
+  .decor.floral{max-width:160px;}
   footer{text-align:center;color:#846d60;margin:60px 0 100px;font-size:15px}
 
   /* Gallery */
@@ -110,8 +110,6 @@
   }
   .gallery-item{position:relative;border-radius:10px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,.1)}
   .gallery-item img{width:100%;height:150px;object-fit:cover;display:block}
-
-  /* Minimal download icon (bottom-right) */
   .dl-btn{
     position:absolute;right:8px;bottom:8px;
     width:34px;height:34px;border:none;border-radius:999px;
@@ -123,9 +121,7 @@
   }
   .dl-btn:hover{transform:scale(1.05);background:#fff}
   .dl-btn svg{width:18px;height:18px;fill:#6b5a51}
-
   #loadMore{display:block;margin:20px auto 0}
-
   @media(max-width:560px){.names{font-size:72px}}
 </style>
 </head>
@@ -136,7 +132,6 @@
 <header class="hero">
   <div class="wrap">
     <div style="text-align:center;">
-      <!-- Pumpkin decor (kept at top) -->
       <img class="decor" src="https://res.cloudinary.com/drqml4t7i/image/upload/v1761165337/Pngtree_watercolor_clipart_of_a_pumpkin_21190341_ewosnn.png" alt="pumpkin decor">
     </div>
     <h1 class="names">Nicolle <span class="amp">&</span> Chris</h1>
@@ -152,7 +147,6 @@
 </header>
 
 <main class="wrap">
-
 <section id="fromcouple">
   <h2>From the Couple</h2>
   <p style="text-align:center;max-width:700px;margin:auto;">
@@ -162,7 +156,6 @@
     Your support and presence mean the world, and we can’t wait to share every joyful moment with you!
   </p>
   <img class="couple-img" src="https://res.cloudinary.com/drqml4t7i/image/upload/v1761156327/c_n_wp607j.jpg" alt="Couple photo">
-  
 </section>
 
 <section id="details">
@@ -179,7 +172,6 @@
       <p>For those unable to attend:<br><a target="_blank" href="https://facebook.com/nicolle.ackel/live">facebook.com/nicolle.ackel/live</a></p>
     </div>
   </div>
-  <!-- Bouquet #2 after Details -->
   <img class="decor floral" src="https://res.cloudinary.com/drqml4t7i/image/upload/v1761167556/Subject_2_wpos0c.png" alt="floral decor">
 </section>
 
@@ -198,13 +190,9 @@
 
 <section id="gallery">
   <h2>View Gallery</h2>
-  <!-- Bouquet #3 above Gallery grid -->
   <img class="decor floral" src="https://res.cloudinary.com/drqml4t7i/image/upload/v1761167788/Subject_3_bcnqjk.png" alt="floral decor">
-
   <div id="galleryGrid" class="gallery-grid"></div>
   <button id="loadMore" class="btn" style="display:none;">Load More</button>
-
-  <!-- Bouquet #4 after Gallery grid -->
   <img class="decor floral" src="https://res.cloudinary.com/drqml4t7i/image/upload/v1761167994/Subject_4_gfuvvy.png" alt="floral decor">
 </section>
 
@@ -214,118 +202,73 @@
   <button id="uploadBtn" class="btn">Upload Photos</button>
   <p class="muted" id="uploadStatus" style="margin-top:10px;"></p>
 </section>
-
 </main>
 
-<!-- Bouquet #5 just above footer -->
 <img class="decor floral" src="https://res.cloudinary.com/drqml4t7i/image/upload/v1761168050/Subject_6_yvkt2e.png" alt="floral decor">
-
-<footer>
-  Made with love • Nicolle & Chris 🍂
-</footer>
+<footer>Made with love • Nicolle & Chris 🍂</footer>
 
 <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
-
 <script>
-/* ===================== Cloudinary Config ===================== */
-const CLOUD_NAME   = "drqml4t7i";
-const UPLOAD_PRESET= "guest_uploads";
-const UPLOAD_FOLDER= "wedding-uploads"; // folder used for uploads
-const LIST_TAG     = "nicolle-chris-11292025"; // tag we add on upload for gallery listing
+const CLOUD_NAME="drqml4t7i";
+const UPLOAD_PRESET="guest_uploads";
+const UPLOAD_FOLDER="wedding-uploads";
+const LIST_TAG="nicolle-chris-11292025";
+const API_KEY="639629213665547";
 
-/* ===================== Upload Widget ===================== */
-const uploadBtn = document.getElementById("uploadBtn");
-const statusEl  = document.getElementById("uploadStatus");
-
-uploadBtn?.addEventListener("click", () => {
-  const widget = cloudinary.createUploadWidget({
-    cloudName: CLOUD_NAME,
-    uploadPreset: UPLOAD_PRESET,
-    folder: UPLOAD_FOLDER,
-    multiple: true,
-    tags: [LIST_TAG],
-    sources: ["local","camera","url"],
-    maxFileSize: 40_000_000,
-    clientAllowedFormats: ["jpg","jpeg","png","heic","mov","mp4"],
-    theme: "minimal"
-  }, (error, result) => {
-    if (!error && result && result.event === "success") {
-      statusEl.textContent = "Upload received — thank you! 📸";
-      loadGallery(true); // refresh gallery immediately
-    }
-  });
-  widget.open();
+/* Upload Widget */
+const uploadBtn=document.getElementById("uploadBtn");
+const statusEl=document.getElementById("uploadStatus");
+uploadBtn?.addEventListener("click",()=>{
+ const widget=cloudinary.createUploadWidget({
+  cloudName:CLOUD_NAME,uploadPreset:UPLOAD_PRESET,folder:UPLOAD_FOLDER,
+  multiple:true,tags:[LIST_TAG],sources:["local","camera","url"],
+  maxFileSize:40_000_000,clientAllowedFormats:["jpg","jpeg","png","heic","mov","mp4"],theme:"minimal"
+ },(error,result)=>{
+  if(!error&&result&&result.event==="success"){
+   statusEl.textContent="Upload received — thank you! 📸";
+   loadGallery(true);
+  }
+ });
+ widget.open();
 });
 
-/* ===================== Auto Gallery (with per-photo download) ===================== */
-/* We list by TAG so every uploaded photo with that tag appears automatically. */
-let allImages = [], page = 0, pageSize = 20;
-
+/* Gallery Loader (API-based) */
+let allImages=[],page=0,pageSize=20;
 async function loadGallery(refresh=false){
-  if (refresh) {
-    allImages = [];
-    page = 0;
-    document.getElementById("galleryGrid").innerHTML = "";
-  }
-
-  if (allImages.length === 0) {
-    // Use the list-by-tag endpoint (no secrets required)
-    const url = `https://res.cloudinary.com/${CLOUD_NAME}/image/list/${LIST_TAG}.json`;
-    try{
-      const res = await fetch(url, { cache: "no-store" });
-      const data = await res.json();
-      // resources contain public_id, secure_url, format, etc.
-      allImages = (data.resources || [])
-        .filter(r => r.format !== "heic" && r.resource_type === "image") // skip HEIC & non-images
-        .map(r => ({
-          url: r.secure_url,
-          // force original download via fl_attachment
-          download: r.secure_url + "?fl_attachment"
-        }))
-        .reverse(); // newest first
-    }catch(e){
-      console.error("Gallery fetch error", e);
-    }
-  }
-
-  const start = page * pageSize, end = start + pageSize;
-  const items = allImages.slice(start, end);
-  const grid  = document.getElementById("galleryGrid");
-
-  items.forEach(({url, download})=>{
-    const item = document.createElement("div");
-    item.className = "gallery-item";
-
-    const img = document.createElement("img");
-    img.src = url;
-    img.alt = "Wedding photo";
-
-    const a = document.createElement("a");
-    a.href = download;               // original download
-    a.className = "dl-btn";
-    a.setAttribute("aria-label", "Download this photo");
-    a.target = "_blank";
-    a.rel = "noopener";
-
-    // Minimal arrow icon (inline SVG)
-    a.innerHTML = `<svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M12 3a1 1 0 0 1 1 1v9.586l2.293-2.293a1 1 0 1 1 1.414 1.414l-4.004 4.004a1 1 0 0 1-1.414 0L7.286 12.707a1 1 0 0 1 1.414-1.414L11 13.586V4a1 1 0 0 1 1-1zM5 19a1 1 0 1 1 0-2h14a1 1 0 1 1 0 2H5z"/>
-      </svg>`;
-
-    item.appendChild(img);
-    item.appendChild(a);
-    grid.appendChild(item);
-  });
-
-  page++;
-  const loadMoreBtn = document.getElementById("loadMore");
-  loadMoreBtn.style.display = (end < allImages.length) ? "block" : "none";
+ if(refresh){allImages=[];page=0;document.getElementById("galleryGrid").innerHTML="";}
+ if(allImages.length===0){
+   const url=`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/resources/image/tags/${LIST_TAG}?api_key=${API_KEY}`;
+   try{
+     const res=await fetch(url);
+     const data=await res.json();
+     if(data.resources&&data.resources.length){
+       allImages=data.resources
+        .filter(r=>r.resource_type==="image")
+        .map(r=>({url:r.secure_url,download:r.secure_url+"?fl_attachment"}))
+        .reverse();
+     }
+   }catch(e){console.error("Gallery fetch error:",e);}
+ }
+ const start=page*pageSize,end=start+pageSize;
+ const items=allImages.slice(start,end);
+ const grid=document.getElementById("galleryGrid");
+ items.forEach(({url,download})=>{
+  const item=document.createElement("div");
+  item.className="gallery-item";
+  const img=document.createElement("img");img.src=url;img.alt="Wedding photo";
+  const a=document.createElement("a");
+  a.href=download;a.className="dl-btn";a.target="_blank";a.rel="noopener";
+  a.innerHTML=`<svg viewBox="0 0 24 24"><path d="M12 3a1 1 0 0 1 1 1v9.586l2.293-2.293a1 1 0 1 1 1.414 1.414l-4.004 4.004a1 1 0 0 1-1.414 0L7.286 12.707a1 1 0 0 1 1.414-1.414L11 13.586V4a1 1 0 0 1 1-1zM5 19a1 1 0 1 1 0-2h14a1 1 0 1 1 0 2H5z"/></svg>`;
+  item.appendChild(img);item.appendChild(a);grid.appendChild(item);
+ });
+ page++;
+ const loadMoreBtn=document.getElementById("loadMore");
+ loadMoreBtn.style.display=(end<allImages.length)?"block":"none";
 }
-
 document.getElementById("loadMore")?.addEventListener("click",()=>loadGallery());
 window.addEventListener("DOMContentLoaded",()=>loadGallery());
 
-/* ===================== Floating Leaves ===================== */
+/* Floating Leaves */
 const leafSvgs=[
  'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"><path fill="%23c46f49" d="M12 2c4 0 8 3 8 7c0 6-7 9-8 13c-1-4-8-7-8-13c0-4 4-7 8-7Z"/></svg>',
  'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"><path fill="%23d49a6a" d="M5 12c0-4 3-8 7-8s7 4 7 8s-3 6-7 6s-7-2-7-6Z"/></svg>',
