@@ -221,7 +221,7 @@ const statusEl=document.getElementById("uploadStatus");
 uploadBtn?.addEventListener("click",()=>{
  const widget=cloudinary.createUploadWidget({
   cloudName:CLOUD_NAME,uploadPreset:UPLOAD_PRESET,folder:UPLOAD_FOLDER,
-  multiple:true,tags:[LIST_TAG],sources:["local","camera","url"],
+  multiple:true,tags:["nicolle-chris-11292025",sources:["local","camera","url"],
   maxFileSize:40_000_000,clientAllowedFormats:["jpg","jpeg","png","heic","mov","mp4"],theme:"minimal"
  },(error,result)=>{
   if(!error&&result&&result.event==="success"){
