@@ -5,164 +5,349 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Nicolle & Chris — 11.29.2025</title>
 
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@400;500;600&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://db.onlinewebfonts.com/c/76a12fb5d3cfb57f7b20a7b75b0a8c39?family=Black+Mango" rel="stylesheet">
 
 <style>
   :root{
     --cream:#f8f1ea;
     --paper:#fbf6f1;
-    --gold:#c9a441;
+    --gold:#caa855;
     --taupe:#a07a6a;
     --terracotta:#c46f49;
     --sage:#cfd7c8;
-    --ink:#53433b;
+    --ink:#4a3b31;
+    --accent:#d49a6a;
   }
-  html,body{margin:0}
+  html,body{margin:0;padding:0}
   body{
-    background:var(--cream);
+    background:var(--cream) url('https://www.transparenttextures.com/patterns/paper-fibers.png');
     color:var(--ink);
-    font-family:"Libre Baskerville", serif;
-    line-height:1.6;
+    font-family:"Montserrat", sans-serif;
+    line-height:1.7;
+    overflow-x:hidden;
   }
-  .wrap{max-width:1100px;margin:auto;padding:24px}
+
+  /* Floating Leaves */
+  .leaves{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+  .leaf{position:absolute;top:-10vh;width:24px;height:24px;opacity:.7;animation:fall linear infinite,sway ease-in-out infinite;filter:drop-shadow(0 2px 2px rgba(0,0,0,.1))}
+  @keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
+  @keyframes sway{0%,100%{margin-left:0}50%{margin-left:30px}}
+  .leaves.paused .leaf{animation-play-state:paused}
+
+  .wrap{max-width:1000px;margin:auto;padding:24px;position:relative;z-index:1}
   header.hero{
-    background:linear-gradient(180deg, rgba(255,255,255,.7), rgba(255,255,255,.9)), url('https://images.unsplash.com/photo-1504198266285-165a4dd24703?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
+    background:linear-gradient(180deg,rgba(255,255,255,.85),rgba(255,255,255,.95)),url('https://images.unsplash.com/photo-1504198266285-165a4dd24703?q=80&w=1600&auto=format&fit=crop')center/cover no-repeat;
     border-bottom:6px solid var(--sage);
-    padding:64px 24px 48px;
+    padding:70px 24px 50px;
   }
   .names{
-    font-family:"Allura", cursive;
-    font-size:min(16vw,140px);
+    font-family:"Black Mango",serif;
+    font-size:min(16vw,120px);
     color:var(--gold);
     text-align:center;
-    line-height:0.85;
+    line-height:.85;
     margin:10px 0 0;
   }
-  .amp{font-size:.6em; letter-spacing:.08em; font-family:"Cormorant Garamond", serif; color:var(--gold)}
-  .date{
-    text-align:center; 
-    font-family:"Cormorant Garamond", serif;
-    font-size:22px; 
-    color:var(--taupe);
-    margin-top:10px
-  }
-  nav{display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:28px}
+  .amp{font-size:.6em;letter-spacing:.08em;color:var(--gold)}
+  .date{text-align:center;font-size:20px;color:var(--taupe);margin-top:10px}
+  nav{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:28px}
   nav a{
-    text-decoration:none; color:var(--ink); background:var(--paper);
-    border:1px solid #e7dfd6; padding:10px 16px; border-radius:999px;
+    text-decoration:none;color:var(--ink);background:var(--paper);
+    border:1px solid #e7dfd6;padding:10px 16px;border-radius:999px;transition:background .3s;
   }
-  section{background:var(--paper); border:1px solid #efe8e0; border-radius:18px; padding:28px; margin:28px 0; box-shadow:0 8px 30px rgba(0,0,0,.04)}
+  nav a:hover{background:var(--sage)}
+
+  section{
+    background:rgba(255,255,255,0.92);
+    border:1px solid #efe8e0;
+    border-radius:18px;
+    padding:35px;
+    margin:45px 0;
+    box-shadow:0 4px 25px rgba(0,0,0,.05);
+    position:relative;
+  }
+  section::before{
+    content:"";
+    position:absolute;
+    top:-12px;left:50%;
+    transform:translateX(-50%);
+    width:120px;height:4px;border-radius:2px;
+    background:linear-gradient(90deg,var(--terracotta),var(--gold),var(--sage));
+  }
   h2{
-    font-family:"Cormorant Garamond", serif; 
-    font-weight:600; font-size:34px; margin:0 0 12px; color:var(--terracotta)
+    font-family:"Black Mango",serif;
+    font-weight:700;
+    font-size:32px;
+    color:var(--terracotta);
+    text-align:center;
+    margin:20px 0 18px;
   }
-  .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px}
-  .card{background:#fff; border:1px solid #eee2d8; padding:18px; border-radius:14px}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+  .card{background:#fff;border:1px solid #eee2d8;padding:18px;border-radius:14px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
   .muted{color:#7e6b61}
+
   .btn{
-    display:inline-block; background:var(--gold); color:#fff; border:none; 
-    padding:12px 16px; border-radius:12px; font-weight:600; cursor:pointer;
+    display:inline-block;background:var(--gold);color:#fff;border:none;
+    padding:12px 16px;border-radius:12px;font-weight:600;cursor:pointer;transition:background .3s;
   }
-  .btn.secondary{background:var(--terracotta)}
-  details{background:#fff; border:1px dashed #e6d9cf; padding:14px 16px; border-radius:12px}
-  footer{color:#846d60; text-align:center; margin:32px 0 80px}
-  .qr-box{display:flex; gap:18px; align-items:center; flex-wrap:wrap}
-  .qr-canvas{background:#fff; border:1px solid #eee; border-radius:12px; padding:12px}
-  .pill{display:inline-block; padding:4px 10px; border-radius:999px; background:#efe7df; color:#7b5f54; font-size:12px}
-  @media (max-width:560px){ .names{font-size:72px} }
+  .btn:hover{background:var(--terracotta)}
+  .btn.ghost{background:transparent;color:var(--ink);border:1px solid #e1d7cd}
+  .toggle-wrap{text-align:center;margin-top:10px}
+
+  .couple-img{display:block;margin:25px auto 10px;width:220px;border-radius:16px;box-shadow:0 4px 15px rgba(0,0,0,.1)}
+  .decor{display:block;margin:25px auto;max-width:130px;opacity:.9}
+  .decor.floral{max-width:160px;} /* natural sizing, slightly larger than pumpkin */
+  footer{text-align:center;color:#846d60;margin:60px 0 100px;font-size:15px}
+
+  /* Gallery */
+  .gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+    gap:10px;margin-top:20px
+  }
+  .gallery-item{position:relative;border-radius:10px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,.1)}
+  .gallery-item img{width:100%;height:150px;object-fit:cover;display:block}
+
+  /* Minimal download icon (bottom-right) */
+  .dl-btn{
+    position:absolute;right:8px;bottom:8px;
+    width:34px;height:34px;border:none;border-radius:999px;
+    background:rgba(255,255,255,.92);
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;text-decoration:none;
+    box-shadow:0 2px 6px rgba(0,0,0,.15);
+    transition:transform .15s ease, background .2s ease;
+  }
+  .dl-btn:hover{transform:scale(1.05);background:#fff}
+  .dl-btn svg{width:18px;height:18px;fill:#6b5a51}
+
+  #loadMore{display:block;margin:20px auto 0}
+
+  @media(max-width:560px){.names{font-size:72px}}
 </style>
 </head>
 <body>
 
+<div class="leaves" id="leaves"></div>
+
 <header class="hero">
   <div class="wrap">
-    <div class="pill">The Woodlands, Texas</div>
+    <div style="text-align:center;">
+      <!-- Pumpkin decor (kept at top) -->
+      <img class="decor" src="https://res.cloudinary.com/drqml4t7i/image/upload/v1761165337/Pngtree_watercolor_clipart_of_a_pumpkin_21190341_ewosnn.png" alt="pumpkin decor">
+    </div>
     <h1 class="names">Nicolle <span class="amp">&</span> Chris</h1>
     <p class="date">Saturday • November 29, 2025 • Four in the afternoon</p>
     <nav>
+      <a href="#fromcouple">From the Couple</a>
       <a href="#details">Details</a>
-      <a href="#where">Where</a>
-      <a href="#dress">Dress Code</a>
-      <a href="#rsvp">RSVP</a>
+      <a href="#fund">Honeymoon Fund</a>
+      <a href="#gallery">View Gallery</a>
       <a href="#photos">Upload Photos</a>
-      <a href="#qr">QR Code</a>
     </nav>
   </div>
 </header>
 
 <main class="wrap">
-  <section id="details">
-    <h2>Wedding Day Details</h2>
-    <div class="grid">
-      <div class="card">
-        <strong>When</strong>
-        <p>Saturday, November 29, 2025<br/>4:00 PM</p>
-      </div>
-      <div class="card">
-        <strong>Where</strong>
-        <p>2614 South Wildwind Circle<br/>The Woodlands, Texas 77380</p>
-        <p><a class="btn" target="_blank" href="https://maps.google.com/?q=2614+South+Wildwind+Circle+The+Woodlands+TX+77380">Open in Maps</a></p>
-      </div>
-      <div class="card">
-        <strong>Livestream</strong>
-        <p>For those unable to attend, we’ll host a Facebook Live:<br/>
-        <a target="_blank" href="https://facebook.com/nicolle.ackel/live">facebook.com/nicolle.ackel/live</a></p>
-      </div>
+
+<section id="fromcouple">
+  <h2>From the Couple</h2>
+  <p style="text-align:center;max-width:700px;margin:auto;">
+    Welcome to our wedding website! We’re so happy you’re here.  
+    This day wouldn’t be the same without each of you — our friends and family who’ve filled our lives with love, laughter, and memories.  
+    Thank you for walking alongside us on this journey and celebrating this new chapter.  
+    Your support and presence mean the world, and we can’t wait to share every joyful moment with you!
+  </p>
+  <img class="couple-img" src="https://res.cloudinary.com/drqml4t7i/image/upload/v1761156327/c_n_wp607j.jpg" alt="Couple photo">
+  
+</section>
+
+<section id="details">
+  <h2>Wedding Day Details</h2>
+  <div class="grid">
+    <div class="card"><strong>When</strong><p>Saturday, November 29, 2025<br>4:00 PM</p></div>
+    <div class="card">
+      <strong>Where</strong>
+      <p>2614 South Wildwind Circle<br>The Woodlands, Texas 77380</p>
+      <p><a class="btn" target="_blank" href="https://maps.google.com/?q=2614+South+Wildwind+Circle+The+Woodlands+TX+77380">Open in Maps</a></p>
     </div>
-  </section>
-
-  <section id="dress">
-    <h2>Dress Code</h2>
-    <p><em>Dressy Casual Attire</em></p>
-    <ul>
-      <li><strong>Ladies:</strong> Long, flowy gowns in beautiful fall colors</li>
-      <li><strong>Men:</strong> Slacks or khakis and a button-up shirt (tie optional)</li>
-    </ul>
-  </section>
-
-  <section id="registry">
-    <h2>Gifts & Registry</h2>
-    <p class="muted">We are not registered anywhere. If you wish to contribute to our honeymoon, thank you!</p>
-    <div class="grid">
-      <div class="card"><strong>Apple Pay / Zelle</strong><p>832-244-0425</p></div>
-      <div class="card"><strong>Cash App</strong><p>$NicolleAckel</p></div>
+    <div class="card">
+      <strong>Livestream</strong>
+      <p>For those unable to attend:<br><a target="_blank" href="https://facebook.com/nicolle.ackel/live">facebook.com/nicolle.ackel/live</a></p>
     </div>
-  </section>
+  </div>
+  <!-- Bouquet #2 after Details -->
+  <img class="decor floral" src="https://res.cloudinary.com/drqml4t7i/image/upload/v1761167556/Subject_2_wpos0c.png" alt="floral decor">
+</section>
 
-  <section id="rsvp">
-    <h2>RSVP</h2>
-    <p>Please text <a href="sms:+18322440425">(832) 244-0425</a>.</p>
-  </section>
+<section id="fund">
+  <h2>Honeymoon Fund</h2>
+  <p class="muted" style="text-align:center;max-width:700px;margin:auto;">
+    Your love and presence are the greatest gifts we could ever ask for!  
+    If you’d like to contribute to our honeymoon adventure, we’ve shared a few easy ways below.  
+    Thank you for helping us create memories to last a lifetime. ✨
+  </p>
+  <div class="grid" style="margin-top:20px;">
+    <div class="card"><strong>Apple Pay / Zelle</strong><p>832-244-0425</p></div>
+    <div class="card"><strong>Cash App</strong><p>$NicolleAckel</p></div>
+  </div>
+</section>
 
-  <section id="photos">
-    <h2>Upload Wedding Photos</h2>
-    <p class="muted">Drop your pics here — originals preferred! Files go straight to our private Cloudinary folder.</p>
-    <button id="uploadBtn" class="btn">Upload Photos</button>
-    <p class="muted" id="uploadStatus" style="margin-top:10px;"></p>
-  </section>
+<section id="gallery">
+  <h2>View Gallery</h2>
+  <!-- Bouquet #3 above Gallery grid -->
+  <img class="decor floral" src="https://res.cloudinary.com/drqml4t7i/image/upload/v1761167788/Subject_3_bcnqjk.png" alt="floral decor">
 
-  <section id="qr">
-    <h2>QR Code</h2>
-    <div class="qr-box">
-      <div>
-        <label for="siteUrl"><strong>Website URL</strong></label><br/>
-        <input id="siteUrl" value="https://yourwedding.onrender.com" style="width:min(420px,100%);padding:10px;border-radius:10px;border:1px solid #e6d9cf;margin:6px 0"/>
-        <button class="btn secondary" id="makeQr">Generate QR</button>
-        <p class="muted">After you deploy on Render, paste your final URL above and tap “Generate QR”, then right-click the image to save/print.</p>
-      </div>
-      <div class="qr-canvas"><canvas id="qrCanvas" width="220" height="220" aria-label="QR code"></canvas></div>
-    </div>
-  </section>
+  <div id="galleryGrid" class="gallery-grid"></div>
+  <button id="loadMore" class="btn" style="display:none;">Load More</button>
+
+  <!-- Bouquet #4 after Gallery grid -->
+  <img class="decor floral" src="https://res.cloudinary.com/drqml4t7i/image/upload/v1761167994/Subject_4_gfuvvy.png" alt="floral decor">
+</section>
+
+<section id="photos">
+  <h2>Upload Wedding Photos</h2>
+  <p class="muted">Drop your pics here — originals preferred! Files go straight to our private Cloudinary folder.</p>
+  <button id="uploadBtn" class="btn">Upload Photos</button>
+  <p class="muted" id="uploadStatus" style="margin-top:10px;"></p>
+</section>
+
 </main>
 
+<!-- Bouquet #5 just above footer -->
+<img class="decor floral" src="https://res.cloudinary.com/drqml4t7i/image/upload/v1761168050/Subject_6_yvkt2e.png" alt="floral decor">
+
 <footer>
-  Made with love • Nicolle & Chris
+  Made with love • Nicolle & Chris 🍂
 </footer>
 
-<!-- Cloudinary Upload Widget -->
 <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
 
-<!-- Minimal fake QR generator -->
 <script>
-!function(){function e(e,t){var n=function(e){for(var t=0,n=0,r=0;r<e.length;r++)t=(t<<5)-t+e.charCodeAt(r)|0,n=(n<<3)-n+e.charCodeAt(r)|0;return[Math.abs(t),Math.abs(n)]}(e),r=t.getContext("2d"),a=t.width,o=Math.floor(a/29),i=o*29,c=Math.floor((a-i)/2);r.clearRect(0,0,a,a),r.fillStyle="#fff",r.fillRect(0,0,a,a),r.fillStyle="#000";for(var l=0;l<29;l++)for(var d=0;d<29;d++){var s=(l*37+d*17+n[0]+n[1])%7<3?1:0;if((l<7&&d<7)||(l<7&&d>21)|*
+/* ===================== Cloudinary Config ===================== */
+const CLOUD_NAME   = "drqml4t7i";
+const UPLOAD_PRESET= "guest_uploads";
+const UPLOAD_FOLDER= "wedding-uploads"; // folder used for uploads
+const LIST_TAG     = "nicolle-chris-11292025"; // tag we add on upload for gallery listing
+
+/* ===================== Upload Widget ===================== */
+const uploadBtn = document.getElementById("uploadBtn");
+const statusEl  = document.getElementById("uploadStatus");
+
+uploadBtn?.addEventListener("click", () => {
+  const widget = cloudinary.createUploadWidget({
+    cloudName: CLOUD_NAME,
+    uploadPreset: UPLOAD_PRESET,
+    folder: UPLOAD_FOLDER,
+    multiple: true,
+    tags: [LIST_TAG],
+    sources: ["local","camera","url"],
+    maxFileSize: 40_000_000,
+    clientAllowedFormats: ["jpg","jpeg","png","heic","mov","mp4"],
+    theme: "minimal"
+  }, (error, result) => {
+    if (!error && result && result.event === "success") {
+      statusEl.textContent = "Upload received — thank you! 📸";
+      loadGallery(true); // refresh gallery immediately
+    }
+  });
+  widget.open();
+});
+
+/* ===================== Auto Gallery (with per-photo download) ===================== */
+/* We list by TAG so every uploaded photo with that tag appears automatically. */
+let allImages = [], page = 0, pageSize = 20;
+
+async function loadGallery(refresh=false){
+  if (refresh) {
+    allImages = [];
+    page = 0;
+    document.getElementById("galleryGrid").innerHTML = "";
+  }
+
+  if (allImages.length === 0) {
+    // Use the list-by-tag endpoint (no secrets required)
+    const url = `https://res.cloudinary.com/${CLOUD_NAME}/image/list/${LIST_TAG}.json`;
+    try{
+      const res = await fetch(url, { cache: "no-store" });
+      const data = await res.json();
+      // resources contain public_id, secure_url, format, etc.
+      allImages = (data.resources || [])
+        .filter(r => r.format !== "heic" && r.resource_type === "image") // skip HEIC & non-images
+        .map(r => ({
+          url: r.secure_url,
+          // force original download via fl_attachment
+          download: r.secure_url + "?fl_attachment"
+        }))
+        .reverse(); // newest first
+    }catch(e){
+      console.error("Gallery fetch error", e);
+    }
+  }
+
+  const start = page * pageSize, end = start + pageSize;
+  const items = allImages.slice(start, end);
+  const grid  = document.getElementById("galleryGrid");
+
+  items.forEach(({url, download})=>{
+    const item = document.createElement("div");
+    item.className = "gallery-item";
+
+    const img = document.createElement("img");
+    img.src = url;
+    img.alt = "Wedding photo";
+
+    const a = document.createElement("a");
+    a.href = download;               // original download
+    a.className = "dl-btn";
+    a.setAttribute("aria-label", "Download this photo");
+    a.target = "_blank";
+    a.rel = "noopener";
+
+    // Minimal arrow icon (inline SVG)
+    a.innerHTML = `<svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 3a1 1 0 0 1 1 1v9.586l2.293-2.293a1 1 0 1 1 1.414 1.414l-4.004 4.004a1 1 0 0 1-1.414 0L7.286 12.707a1 1 0 0 1 1.414-1.414L11 13.586V4a1 1 0 0 1 1-1zM5 19a1 1 0 1 1 0-2h14a1 1 0 1 1 0 2H5z"/>
+      </svg>`;
+
+    item.appendChild(img);
+    item.appendChild(a);
+    grid.appendChild(item);
+  });
+
+  page++;
+  const loadMoreBtn = document.getElementById("loadMore");
+  loadMoreBtn.style.display = (end < allImages.length) ? "block" : "none";
+}
+
+document.getElementById("loadMore")?.addEventListener("click",()=>loadGallery());
+window.addEventListener("DOMContentLoaded",()=>loadGallery());
+
+/* ===================== Floating Leaves ===================== */
+const leafSvgs=[
+ 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"><path fill="%23c46f49" d="M12 2c4 0 8 3 8 7c0 6-7 9-8 13c-1-4-8-7-8-13c0-4 4-7 8-7Z"/></svg>',
+ 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"><path fill="%23d49a6a" d="M5 12c0-4 3-8 7-8s7 4 7 8s-3 6-7 6s-7-2-7-6Z"/></svg>',
+ 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"><path fill="%23849f88" d="M12 4c3 0 6 2 6 5c0 5-5 7-6 11c-1-4-6-6-6-11c0-3 3-5 6-5Z"/></svg>'
+];
+function spawnLeaves(count=18){
+ const box=document.getElementById("leaves");
+ const vw=Math.max(document.documentElement.clientWidth,window.innerWidth||0);
+ for(let i=0;i<count;i++){
+  const el=document.createElement("img");
+  el.className="leaf";
+  el.src=leafSvgs[i%leafSvgs.length];
+  el.style.left=Math.random()*vw+"px";
+  const dur=10+Math.random()*10;
+  const delay=Math.random()*-20;
+  const swayDur=3+Math.random()*3;
+  el.style.animationDuration=`${dur}s,${swayDur}s`;
+  el.style.animationDelay=`${delay}s,${delay/2}s`;
+  box.appendChild(el);
+ }
+}
+spawnLeaves(18);
+</script>
+</body>
+</html>
