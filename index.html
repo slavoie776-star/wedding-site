@@ -9,9 +9,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 <link href="https://db.onlinewebfonts.com/c/76a12fb5d3cfb57f7b20a7b75b0a8c39?family=Black+Mango" rel="stylesheet">
 
-<!-- Cloudinary Product Gallery -->
-<link rel="stylesheet" href="https://product-gallery.cloudinary.com/all.css">
-
 <style>
   :root{
     --cream:#f8f1ea;
@@ -21,7 +18,6 @@
     --terracotta:#c46f49;
     --sage:#cfd7c8;
     --ink:#4a3b31;
-    --accent:#d49a6a;
   }
   html,body{margin:0;padding:0}
   body{
@@ -32,16 +28,11 @@
     overflow-x:hidden;
   }
 
-  /* Floating Leaves */
-  .leaves{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
-  .leaf{position:absolute;top:-10vh;width:24px;height:24px;opacity:.7;animation:fall linear infinite,sway ease-in-out infinite;filter:drop-shadow(0 2px 2px rgba(0,0,0,.1))}
-  @keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
-  @keyframes sway{0%,100%{margin-left:0}50%{margin-left:30px}}
-  .leaves.paused .leaf{animation-play-state:paused}
-
   .wrap{max-width:1000px;margin:auto;padding:24px;position:relative;z-index:1}
   header.hero{
-    background:linear-gradient(180deg,rgba(255,255,255,.85),rgba(255,255,255,.95)),url('https://images.unsplash.com/photo-1504198266285-165a4dd24703?q=80&w=1600&auto=format&fit=crop')center/cover no-repeat;
+    background:linear-gradient(180deg,rgba(255,255,255,.85),rgba(255,255,255,.95)),
+      url('https://images.unsplash.com/photo-1504198266285-165a4dd24703?q=80&w=1600&auto=format&fit=crop')
+      center/cover no-repeat;
     border-bottom:6px solid var(--sage);
     padding:70px 24px 50px;
   }
@@ -53,7 +44,7 @@
     line-height:.85;
     margin:10px 0 0;
   }
-  .amp{font-size:.6em;letter-spacing:.08em;color:var(--gold)}
+  .amp{font-size:.6em;color:var(--gold)}
   .date{text-align:center;font-size:20px;color:var(--taupe);margin-top:10px}
   nav{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:28px}
   nav a{
@@ -69,15 +60,6 @@
     padding:35px;
     margin:45px 0;
     box-shadow:0 4px 25px rgba(0,0,0,.05);
-    position:relative;
-  }
-  section::before{
-    content:"";
-    position:absolute;
-    top:-12px;left:50%;
-    transform:translateX(-50%);
-    width:120px;height:4px;border-radius:2px;
-    background:linear-gradient(90deg,var(--terracotta),var(--gold),var(--sage));
   }
   h2{
     font-family:"Black Mango",serif;
@@ -87,25 +69,20 @@
     text-align:center;
     margin:20px 0 18px;
   }
-
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
-  .card{background:#fff;border:1px solid #eee2d8;padding:18px;border-radius:14px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
-  .muted{color:#7e6b61}
-
   .btn{
     display:inline-block;background:var(--gold);color:#fff;border:none;
-    padding:12px 16px;border-radius:12px;font-weight:600;cursor:pointer;transition:background .3s;
+    padding:12px 16px;border-radius:12px;font-weight:600;cursor:pointer;
+    text-decoration:none;transition:background .3s;
   }
   .btn:hover{background:var(--terracotta)}
-  .couple-img{display:block;margin:25px auto 10px;width:220px;border-radius:16px;box-shadow:0 4px 15px rgba(0,0,0,.1)}
+  .couple-img{display:block;margin:25px auto;width:220px;border-radius:16px;box-shadow:0 4px 15px rgba(0,0,0,.1)}
   .decor{display:block;margin:25px auto;max-width:130px;opacity:.9}
   .decor.floral{max-width:160px;}
   footer{text-align:center;color:#846d60;margin:60px 0 100px;font-size:15px}
+  @media(max-width:560px){.names{font-size:72px}}
 </style>
 </head>
 <body>
-
-<div class="leaves" id="leaves"></div>
 
 <header class="hero">
   <div class="wrap">
@@ -139,115 +116,77 @@
 
 <section id="details">
   <h2>Wedding Day Details</h2>
-  <div class="grid">
-    <div class="card"><strong>When</strong><p>Saturday, November 29, 2025<br>4:00 PM</p></div>
-    <div class="card">
-      <strong>Where</strong>
-      <p>2614 South Wildwind Circle<br>The Woodlands, Texas 77380</p>
-      <p><a class="btn" target="_blank" href="https://maps.google.com/?q=2614+South+Wildwind+Circle+The+Woodlands+TX+77380">Open in Maps</a></p>
-    </div>
-    <div class="card">
-      <strong>Livestream</strong>
-      <p>For those unable to attend:<br><a target="_blank" href="https://facebook.com/nicolle.ackel/live">facebook.com/nicolle.ackel/live</a></p>
-    </div>
+  <div style="text-align:center;">
+    <p>Saturday, November 29, 2025<br>4:00 PM</p>
+    <p>2614 South Wildwind Circle<br>The Woodlands, Texas 77380</p>
+    <a class="btn" target="_blank" href="https://maps.google.com/?q=2614+South+Wildwind+Circle+The+Woodlands+TX+77380">Open in Maps</a>
   </div>
-  <img class="decor floral" src="https://res.cloudinary.com/drqml4t7i/image/upload/v1761167556/Subject_2_wpos0c.png" alt="floral decor">
 </section>
 
 <section id="fund">
   <h2>Honeymoon Fund</h2>
-  <p class="muted" style="text-align:center;max-width:700px;margin:auto;">
-    Your love and presence are the greatest gifts we could ever ask for!  
-    If you’d like to contribute to our honeymoon adventure, we’ve shared a few easy ways below.  
-    Thank you for helping us create memories to last a lifetime. ✨
+  <p style="text-align:center;max-width:700px;margin:auto;">
+    Your love and presence are the greatest gifts we could ever ask for.  
+    If you’d like to help us celebrate with a honeymoon adventure, we’re so grateful for your kindness. ✨
   </p>
-  <div class="grid" style="margin-top:20px;">
-    <div class="card"><strong>Apple Pay / Zelle</strong><p>832-244-0425</p></div>
-    <div class="card"><strong>Cash App</strong><p>$NicolleAckel</p></div>
+  <div style="text-align:center;margin-top:20px;">
+    <p><strong>Apple Pay / Zelle:</strong> 832-244-0425</p>
+    <p><strong>Cash App:</strong> $NicolleAckel</p>
   </div>
 </section>
 
 <section id="gallery">
   <h2>View Gallery</h2>
-  <div id="cld-gallery" style="margin-top:20px;"></div>
+  <p style="text-align:center;max-width:700px;margin:10px auto 20px;">
+    Relive the memories from our special day. Click below to see the full gallery of photos!
+  </p>
+  <div style="text-align:center;">
+    <a class="btn" target="_blank" href="https://photos.app.goo.gl/FeXkFNoKFfD4ZA4GA">
+      Open Wedding Photo Gallery
+    </a>
+  </div>
 </section>
 
 <section id="photos">
   <h2>Upload Wedding Photos</h2>
-  <p class="muted">Drop your pics here — originals preferred! Files go straight to our private Cloudinary folder.</p>
-  <button id="uploadBtn" class="btn">Upload Photos</button>
-  <p class="muted" id="uploadStatus" style="margin-top:10px;"></p>
+  <p style="text-align:center;max-width:700px;margin:10px auto 20px;">
+    Share your favorite moments with us! Click below to upload your pictures directly.
+  </p>
+  <div style="text-align:center;">
+    <a class="btn" target="_blank" href="https://photos.app.goo.gl/FeXkFNoKFfD4ZA4GA">
+      Upload to Album
+    </a>
+  </div>
 </section>
 
 </main>
 
-<img class="decor floral" src="https://res.cloudinary.com/drqml4t7i/image/upload/v1761168050/Subject_6_yvkt2e.png" alt="floral decor">
-<footer>Made with love • Nicolle & Chris 🍂</footer>
-
-<script src="https://product-gallery.cloudinary.com/all.js" type="text/javascript"></script>
-<script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
+<footer>
+  Made with love • Nicolle & Chris 🍂
+</footer>
 
 <script>
-const CLOUD_NAME   = "drqml4t7i";
-const UPLOAD_PRESET= "guest_uploads";
-const UPLOAD_FOLDER= "wedding-uploads";
-
-/* Upload Widget */
-const uploadBtn=document.getElementById("uploadBtn");
-const statusEl=document.getElementById("uploadStatus");
-
-uploadBtn?.addEventListener("click",()=>{
- const widget=cloudinary.createUploadWidget({
-  cloudName:CLOUD_NAME,
-  uploadPreset:UPLOAD_PRESET,
-  folder:UPLOAD_FOLDER,
-  multiple:true,
-  sources:["local","camera","url"],
-  maxFileSize:40_000_000,
-  clientAllowedFormats:["jpg","jpeg","png","heic","mov","mp4"],
-  theme:"minimal"
- },(error,result)=>{
-  if(!error&&result&&result.event==="success"){
-   statusEl.textContent="Upload received — thank you! 📸";
-   gallery.refresh();
-  }
- });
- widget.open();
-});
-
-/* Product Gallery */
-const gallery=cloudinary.galleryWidget({
- container:"#cld-gallery",
- cloudName:CLOUD_NAME,
- mediaAssets:[{folder:UPLOAD_FOLDER}],
- transformation:{fetch_format:"auto",quality:"auto"},
- displayProps:{mode:"grid",columns:4,spacing:8,theme:"light"},
- zoom:true,
- style:{thumbnails:{shape:"rounded"}}
-});
-gallery.render();
-
-/* Floating Leaves */
+/* Floating Leaves Animation */
 const leafSvgs=[
  'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"><path fill="%23c46f49" d="M12 2c4 0 8 3 8 7c0 6-7 9-8 13c-1-4-8-7-8-13c0-4 4-7 8-7Z"/></svg>',
  'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"><path fill="%23d49a6a" d="M5 12c0-4 3-8 7-8s7 4 7 8s-3 6-7 6s-7-2-7-6Z"/></svg>',
- 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"><path fill="%23849f88" d="M12 4c3 0 6 2 6 5c0 5-5 7-6 11c-1-4-6-6-6-11c0-3 3-5 6-5Z"/></svg>'
+ 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"><path fill="%23849f88" d="M12 4c3 0 6 2 6 5c0 5-5 7-6 11c-1-4 -6-6 -6-11c0-3 3-5 6-5Z"/></svg>'
 ];
 function spawnLeaves(count=18){
- const box=document.getElementById("leaves");
- const vw=Math.max(document.documentElement.clientWidth,window.innerWidth||0);
- for(let i=0;i<count;i++){
-  const el=document.createElement("img");
-  el.className="leaf";
-  el.src=leafSvgs[i%leafSvgs.length];
-  el.style.left=Math.random()*vw+"px";
-  const dur=10+Math.random()*10;
-  const delay=Math.random()*-20;
-  const swayDur=3+Math.random()*3;
-  el.style.animationDuration=`${dur}s,${swayDur}s`;
-  el.style.animationDelay=`${delay}s,${delay/2}s`;
-  box.appendChild(el);
- }
+  const box=document.body;
+  const vw=Math.max(document.documentElement.clientWidth,window.innerWidth||0);
+  for(let i=0;i<count;i++){
+    const el=document.createElement("img");
+    el.className="leaf";
+    el.src=leafSvgs[i%leafSvgs.length];
+    el.style.position="fixed";
+    el.style.left=Math.random()*vw+"px";
+    el.style.top=Math.random()*-100+"px";
+    el.style.animation=`fall ${10+Math.random()*10}s linear infinite, sway ${3+Math.random()*3}s ease-in-out infinite`;
+    el.style.opacity=Math.random()*0.6+0.4;
+    el.style.width="24px";
+    document.body.appendChild(el);
+  }
 }
 spawnLeaves(18);
 </script>
