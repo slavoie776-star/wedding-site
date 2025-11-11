@@ -9,6 +9,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 <link href="https://db.onlinewebfonts.com/c/76a12fb5d3cfb57f7b20a7b75b0a8c39?family=Black+Mango" rel="stylesheet">
 
+<!-- Cloudinary Product Gallery -->
+<link rel="stylesheet" href="https://product-gallery.cloudinary.com/all.css">
+
 <style>
   :root{
     --cream:#f8f1ea;
@@ -98,20 +101,6 @@
   .decor{display:block;margin:25px auto;max-width:130px;opacity:.9}
   .decor.floral{max-width:160px;}
   footer{text-align:center;color:#846d60;margin:60px 0 100px;font-size:15px}
-
-  /* Gallery */
-  .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:20px}
-  .gallery-item{position:relative;border-radius:10px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,.1)}
-  .gallery-item img{width:100%;height:150px;object-fit:cover;display:block}
-  .dl-btn{
-    position:absolute;right:8px;bottom:8px;
-    width:34px;height:34px;border:none;border-radius:999px;
-    background:rgba(255,255,255,.92);
-    display:flex;align-items:center;justify-content:center;
-    cursor:pointer;text-decoration:none;
-    box-shadow:0 2px 6px rgba(0,0,0,.15);
-  }
-  .dl-btn svg{width:18px;height:18px;fill:#6b5a51}
 </style>
 </head>
 <body>
@@ -180,8 +169,7 @@
 
 <section id="gallery">
   <h2>View Gallery</h2>
-  <img class="decor floral" src="https://res.cloudinary.com/drqml4t7i/image/upload/v1761167788/Subject_3_bcnqjk.png" alt="floral decor">
-  <div id="galleryGrid" class="gallery-grid"></div>
+  <div id="cld-gallery" style="margin-top:20px;"></div>
 </section>
 
 <section id="photos">
@@ -196,12 +184,13 @@
 <img class="decor floral" src="https://res.cloudinary.com/drqml4t7i/image/upload/v1761168050/Subject_6_yvkt2e.png" alt="floral decor">
 <footer>Made with love • Nicolle & Chris 🍂</footer>
 
+<script src="https://product-gallery.cloudinary.com/all.js" type="text/javascript"></script>
 <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
+
 <script>
-const CLOUD_NAME="drqml4t7i";
-const UPLOAD_PRESET="guest_uploads";
-const UPLOAD_FOLDER="wedding-uploads";
-const API_KEY="639629213665547";
+const CLOUD_NAME   = "drqml4t7i";
+const UPLOAD_PRESET= "guest_uploads";
+const UPLOAD_FOLDER= "wedding-uploads";
 
 /* Upload Widget */
 const uploadBtn=document.getElementById("uploadBtn");
@@ -209,50 +198,34 @@ const statusEl=document.getElementById("uploadStatus");
 
 uploadBtn?.addEventListener("click",()=>{
  const widget=cloudinary.createUploadWidget({
-  cloudName:CLOUD_NAME,uploadPreset:UPLOAD_PRESET,folder:UPLOAD_FOLDER,
-  multiple:true,sources:["local","camera","url"],
-  maxFileSize:40_000_000,clientAllowedFormats:["jpg","jpeg","png","heic","mov","mp4"],theme:"minimal"
+  cloudName:CLOUD_NAME,
+  uploadPreset:UPLOAD_PRESET,
+  folder:UPLOAD_FOLDER,
+  multiple:true,
+  sources:["local","camera","url"],
+  maxFileSize:40_000_000,
+  clientAllowedFormats:["jpg","jpeg","png","heic","mov","mp4"],
+  theme:"minimal"
  },(error,result)=>{
   if(!error&&result&&result.event==="success"){
    statusEl.textContent="Upload received — thank you! 📸";
-   loadGallery(true);
+   gallery.refresh();
   }
  });
  widget.open();
 });
 
-/* Folder-Based Gallery Loader */
-let allImages=[],page=0,pageSize=20;
-async function loadGallery(refresh=false){
- if(refresh){allImages=[];page=0;document.getElementById("galleryGrid").innerHTML="";}
- if(allImages.length===0){
-   const url=`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/resources/image/folder/${UPLOAD_FOLDER}?api_key=${API_KEY}`;
-   try{
-     const res=await fetch(url);
-     const data=await res.json();
-     if(data.resources&&data.resources.length){
-       allImages=data.resources
-        .filter(r=>r.resource_type==="image")
-        .map(r=>({url:r.secure_url,download:r.secure_url+"?fl_attachment"}))
-        .reverse();
-     }
-   }catch(e){console.error("Gallery fetch error:",e);}
- }
- const start=page*pageSize,end=start+pageSize;
- const items=allImages.slice(start,end);
- const grid=document.getElementById("galleryGrid");
- items.forEach(({url,download})=>{
-  const item=document.createElement("div");
-  item.className="gallery-item";
-  const img=document.createElement("img");img.src=url;img.alt="Wedding photo";
-  const a=document.createElement("a");
-  a.href=download;a.className="dl-btn";a.target="_blank";a.rel="noopener";
-  a.innerHTML=`<svg viewBox="0 0 24 24"><path d="M12 3a1 1 0 0 1 1 1v9.586l2.293-2.293a1 1 0 1 1 1.414 1.414l-4.004 4.004a1 1 0 0 1-1.414 0L7.286 12.707a1 1 0 0 1 1.414-1.414L11 13.586V4a1 1 0 0 1 1-1zM5 19a1 1 0 1 1 0-2h14a1 1 0 1 1 0 2H5z"/></svg>`;
-  item.appendChild(img);item.appendChild(a);grid.appendChild(item);
- });
- page++;
-}
-window.addEventListener("DOMContentLoaded",()=>loadGallery());
+/* Product Gallery */
+const gallery=cloudinary.galleryWidget({
+ container:"#cld-gallery",
+ cloudName:CLOUD_NAME,
+ mediaAssets:[{folder:UPLOAD_FOLDER}],
+ transformation:{fetch_format:"auto",quality:"auto"},
+ displayProps:{mode:"grid",columns:4,spacing:8,theme:"light"},
+ zoom:true,
+ style:{thumbnails:{shape:"rounded"}}
+});
+gallery.render();
 
 /* Floating Leaves */
 const leafSvgs=[
